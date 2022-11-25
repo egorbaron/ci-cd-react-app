@@ -5,7 +5,7 @@ on: [push]
 jobs:
   eslint:
     name: ESLint
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-lastest
     steps:
       - uses: actions/checkout@v2
       - name: Install NVM
@@ -13,7 +13,7 @@ jobs:
       - name: Install Node.js
         env:
           NODE_VERSION: 14.17.0
-        run: . "$NVM_DIR/nvm.sh" --no-use && nvm install
+        run: nvm install
       - name: Install dependencies
         run: npm install
       - name: Lint source code with ESLint
