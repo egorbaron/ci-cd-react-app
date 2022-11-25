@@ -19,8 +19,6 @@ jobs:
           [ -s "$NVM_DIR/nvm.sh" ] 
           echo "$NVM_DIR"
           . "$NVM_DIR/nvm.sh"
-          nvm install
-      - name: Install dependencies
-        run: npm install
+           nvm exec npm install
       - name: Lint source code with ESLint
         run: npm run lint
