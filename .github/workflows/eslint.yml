@@ -1,22 +1,19 @@
 name: eslint
 
-on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+on: [push]
 
 jobs:
   eslint:
-    runs-on: ubuntu-latest
+    name: ESLint
+    runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
       - name: Install NVM
-        run: curl -sL https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.0/install.sh -o install_nvm.sh
+        run: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
       - name: Install Node.js
         env:
           NODE_VERSION: 14.17.0
-        run: nvm install $NODE_VERSION
+        run: . "$NVM_DIR/nvm.sh" --no-use && nvm install
       - name: Install dependencies
         run: npm install
       - name: Lint source code with ESLint
