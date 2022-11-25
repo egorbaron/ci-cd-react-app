@@ -16,7 +16,10 @@ jobs:
         run: | 
           echo "$NODE_VERSION"
           export NVM_DIR="$HOME/.nvm"
-          [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" && nvm install
+          [ -s "$NVM_DIR/nvm.sh" ] 
+          echo "$NVM_DIR"
+          . "$NVM_DIR/nvm.sh"
+          nvm install
       - name: Install dependencies
         run: npm install
       - name: Lint source code with ESLint
