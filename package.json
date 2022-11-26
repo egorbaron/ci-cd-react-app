@@ -4,10 +4,12 @@
   "private": true,
   "devDependencies": {
     "cross-env": "^5.1.4",
+    "eslint": "^7.26.0",
+    "eslint-plugin-jest": "^24.3.6",
+    "eslint-plugin-react": "^7.23.2",
     "react-scripts": "1.1.1"
   },
   "dependencies": {
-    "eslint": "^7.26.0",
     "history": "^4.6.3",
     "marked": "^0.3.6",
     "prop-types": "^15.5.10",
