@@ -31,7 +31,11 @@ jobs:
       - name: Install node.js
         env:
           NODE_VERSION: 14.17.0
-        run: nvm install $NODE_VERSION
+        run: | 
+          export NVM_DIR="$HOME/.nvm"
+          [ -s "$NVM_DIR/nvm.sh" ] 
+          . "$NVM_DIR/nvm.sh"
+          nvm install
       - name: Install dependencies
         run: npm install
       - name: Prettify our source code with Prettier
