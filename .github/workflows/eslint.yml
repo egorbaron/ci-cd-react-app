@@ -39,4 +39,4 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Prettify our source code with Prettier
-        run: npm run prettier
+        run: npm run check:format
