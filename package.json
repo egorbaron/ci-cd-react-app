@@ -31,6 +31,7 @@
     "build": "react-scripts build",
     "test": "cross-env PORT=4100 react-scripts test --env=jsdom",
     "lint": "eslint .",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "check:format": "prettier --check ."
   }
 }
