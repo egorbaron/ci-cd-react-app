@@ -1,0 +1,27 @@
+name: test
+
+on: [push]
+
+jobs:
+  eslint:
+    name: ESLint container
+    runs-on: ubuntu-latest
+    container:
+      image: node:14.17.0-alpine
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: npm install
+      - name: Lint source code with ESLint
+        run: npm run lint
+  prettier:
+    name: Prettier container
+    runs-on: ubuntu-latest
+    container:
+      image: node:14.17.0-alpine
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: npm install
+      - name: Lint source code with Prettier
+        run: npm run check:format
