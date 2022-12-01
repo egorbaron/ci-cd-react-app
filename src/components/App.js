@@ -47,6 +47,7 @@ class App extends React.Component {
 
     this.props.onLoad(token ? agent.Auth.current() : null, token);
   }
+  // test cache
 
   render() {
     if (this.props.appLoaded) {
