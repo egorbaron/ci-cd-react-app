@@ -12,9 +12,25 @@ eslint:
     - npm install
     - npm run lint
 
-prettier:
-  image: node:14.17.0-alpine
+image: node:14.17.0-alpine
+
+cache:
+  key:
+    files:
+      - package-lock.json
+  paths:
+    - .npm/
+
+before_script:
+  - npm ci --cache .npm --prefer-offline
+
+eslint:
   stage: test
   script:
-    - npm install
+    # запуск ESLint
+    - npm run lint
+
+prettier:
+  stage: test
+  script:
     - npm run check:format
