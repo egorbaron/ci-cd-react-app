@@ -27,7 +27,6 @@ before_script:
 eslint:
   stage: test
   script:
-    # запуск ESLint
     - npm run lint
 
 prettier:
