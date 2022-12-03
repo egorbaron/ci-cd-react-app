@@ -1,8 +1,8 @@
 stages:
-  - lint
+  - test
 
 eslint:
-  stage: lint
+  stage: test
   variables:
     NODE_VERSION: 14.17.0
   script:
@@ -11,3 +11,10 @@ eslint:
     - eval "[ -f .nvmrc ] && nvm install"
     - npm install
     - npm run lint
+
+prettier:
+  image: node:14.17.0-alpine
+  stage: test
+  script:
+    - npm install
+    - npm run check:format
