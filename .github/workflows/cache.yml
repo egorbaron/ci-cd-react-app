@@ -37,6 +37,7 @@ jobs:
       - name: Lint source code with ESLint
         run: npm run lint
   prettier:
+    needs: build
     name: Prettier
     runs-on: ubuntu-latest
     container:
@@ -49,7 +50,5 @@ jobs:
           path: ~/.npm
           key: npm-${{ hashFiles('package-lock.json') }}
           restore-keys: npm-
-      - name: Install dependencies
-        run: npm install
       - name: Lint source code with Prettier
         run: npm run check:format
