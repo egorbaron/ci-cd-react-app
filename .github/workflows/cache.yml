@@ -2,7 +2,7 @@ name: cache
 
 on: 
   push:
-    branches: [cache]
+    branches: [main]
 
 jobs:
   build:
