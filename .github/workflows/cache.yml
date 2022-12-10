@@ -14,13 +14,12 @@ jobs:
       - uses: actions/checkout@v2
       - name: Cache dependencies
         uses: actions/cache@v2
-        env: 
-          cache-name: npm-${{ hashFiles('package-lock.json') }}
         with:
-          path: ~/.npm
-          key: ${{ env.cache-name }}}
-          restore-key: |
-            ${{ env.cache-name }}}
+          path: .npm
+          key: npm-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            npm-${{ hashFiles('package-lock.json') }}
+            npm-
       - name: Install dependencies
         run: npm install
   eslint:
@@ -34,10 +33,11 @@ jobs:
       - name: Cache dependencies
         uses: actions/cache@v2
         with:
-          path: ~/.npm
+          path: .npm
           key: npm-${{ hashFiles('package-lock.json') }}
-          restore-key: |
+          restore-keys: |
             npm-${{ hashFiles('package-lock.json') }}
+            npm-
       - name: Lint source code with ESLint
         run: npm run lint
   prettier:
@@ -51,9 +51,10 @@ jobs:
       - name: Cache dependencies
         uses: actions/cache@v2
         with:
-          path: ~/.npm
+          path: .npm
           key: npm-${{ hashFiles('package-lock.json') }}
-          restore-key: |
+          restore-keys: |
             npm-${{ hashFiles('package-lock.json') }}
+            npm-
       - name: Lint source code with Prettier
         run: npm run check:format
