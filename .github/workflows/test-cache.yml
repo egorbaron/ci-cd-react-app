@@ -5,9 +5,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    container:
+      image: node:14.17.0-alpine
     steps:
       - uses: actions/checkout@v3
-
       - name: Cache node modules
         id: cache-npm
         uses: actions/cache@v3
@@ -30,7 +31,23 @@ jobs:
         run: npm install
 
       - name: Build
-        run: npm build
-
-      - name: Test
-        run: npm test
+        run: npm run build
+  eslint:
+      needs: build
+      name: ESLint cache
+      runs-on: ubuntu-latest
+      container:
+        image: node:14.17.0-alpine
+      steps:
+        - uses: actions/checkout@v3
+        - name: Cache dependencies
+          uses: actions/cache@v3
+          with:
+            path: .npm
+            key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+            restore-keys: |
+              ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+              ${{ runner.os }}-build-
+              ${{ runner.os }}-
+        - name: Lint source code with ESLint
+          run: npm run lint
