@@ -30,8 +30,6 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build
-        run: npm run build
   eslint:
       needs: build
       name: ESLint cache
